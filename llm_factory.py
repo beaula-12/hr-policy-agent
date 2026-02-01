@@ -3,7 +3,7 @@ import os
 
 def get_llm():
     return ChatGoogleGenerativeAI(
-        model="gemini-2.5-flash",
+        model="gemini-2.0-flash",
         temperature=0,
         max_retries=2
     )
