@@ -11,7 +11,7 @@ def get_llm():
             raise RuntimeError("GOOGLE_API_KEY not set")
 
         _llm = ChatGoogleGenerativeAI(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             temperature=0,
             max_retries=2,
             google_api_key=api_key
