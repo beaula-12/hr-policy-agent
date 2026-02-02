@@ -1,9 +1,8 @@
-from llm_factory import get_llm
+# from llm_factory import get_llm
 import json
 
-llm = get_llm()
-
 def score(decision: str):
+    llm = get_llm()
     prompt = f"""
 Give confidence score between 0 and 1.
 Give 1–3 risk notes.
