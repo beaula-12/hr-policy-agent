@@ -1,25 +1,33 @@
-from llm_factory import get_llm
+# from llm_factory import get_llm
 import json
+import re
 
 def score(decision: str):
     llm = get_llm()
-    prompt = f"""
-Give confidence score between 0 and 1.
-Give 1–3 risk notes.
 
-Return STRICT JSON:
+    prompt = f"""
+You MUST return ONLY valid JSON.
+No text. No markdown. No explanation.
+
+JSON format:
 {{
-  "confidence_score": 0.9,
-  "risk_notes": ["..."]
+  "confidence_score": number between 0 and 1,
+  "risk_notes": array of strings
 }}
 
 Decision:
 {decision}
 """
-    try:
-        return json.loads(llm.invoke(prompt).content)
-    except:
-        return {
-            "confidence_score": 0.75,
-            "risk_notes": ["Confidence parsing fallback"]
-        }
+
+    response = llm.invoke(prompt).content.strip()
+
+    # Extract JSON safely
+    match = re.search(r"\{.*\}", response, re.DOTALL)
+
+    if match:
+        return json.loads(match.group())
+
+    return {
+        "confidence_score": 0.75,
+        "risk_notes": ["Confidence parsing fallback"]
+    }
