@@ -10,5 +10,4 @@ google-generativeai
 langchain-chroma
 langchain-text-splitters 
 langchain-huggingface
-langchain-ollama
-fastapi
+
