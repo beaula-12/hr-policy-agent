@@ -25,7 +25,7 @@
 #     return llm.invoke(prompt).content.strip()
 
 from llm_factory import get_llm
-from memory import memory
+from agents.memory import memory
 
 def reason(case_data, documents):
     llm = get_llm()
