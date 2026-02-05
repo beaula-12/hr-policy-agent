@@ -25,22 +25,25 @@
 #     return llm.invoke(prompt).content.strip()
 
 from llm_factory import get_llm
-from agents.memory import memory
 
-def reason(case_data, documents):
+def reason(case_data, documents, history=None):
     llm = get_llm()
 
     policies_text = "\n\n".join(
         f"- {d.page_content}" for d in documents
     )
 
-    chat_history = memory.load_memory_variables({}).get("chat_history", [])
+    conversation = ""
+    if history:
+        conversation = "\n".join(
+            f"{m['role']}: {m['content']}" for m in history
+        )
 
     prompt = f"""
 You are an HR policy assistant.
 
 Conversation so far:
-{chat_history}
+{conversation}
 
 Use ONLY the policies below.
 
@@ -55,11 +58,4 @@ Policies:
 {policies_text}
 """
 
-    response = llm.invoke(prompt).content.strip()
-
-    memory.save_context(
-        {"input": case_data},
-        {"output": response}
-    )
-
-    return response
+    return llm.invoke(prompt).content.strip()
