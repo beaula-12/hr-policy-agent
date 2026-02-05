@@ -1,14 +1,35 @@
-langchain
-chromadb 
-sentence-transformers
-streamlit 
-pypdf 
+# langchain
+# chromadb 
+# sentence-transformers
+# streamlit 
+# pypdf 
+# python-dotenv
+# langchain-community
+# langchain-google-genai
+# google-generativeai
+# langchain-chroma
+# langchain-text-splitters 
+# langchain-huggingface
+# langchain-ollama
+# fastapi
+
+streamlit
+
+langchain==0.1.20
+langchain-community==0.0.38
+langchain-core==0.1.53
+
+langchain-google-genai==1.0.3
+google-generativeai==0.5.4
+
+chromadb==0.4.24
+langchain-chroma==0.1.4
+
+sentence-transformers==2.2.2
+langchain-huggingface==0.0.6
+
+langchain-text-splitters==0.0.1
+pypdf
 python-dotenv
-langchain-community
-langchain-google-genai
-google-generativeai
-langchain-chroma
-langchain-text-splitters 
-langchain-huggingface
-langchain-ollama
 fastapi
+
